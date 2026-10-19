@@ -10,7 +10,7 @@ def release_files():
     files = [ROOT / name for name in (
         "Dockerfile", ".dockerignore", "compose.yaml", "baseus_service.py",
         "baseus_autonomous.py", "requirements-service.txt", "requirements-autonomous.txt", "requirements-test.txt",
-        "README.md", "README_EN.md", "AUTONOMOUS_RU.md", "AUTONOMOUS_EN.md",
+        "README.md", "README_EN.md", "LEGACY_ADB_RU.md", "AUTONOMOUS_RU.md", "AUTONOMOUS_EN.md",
         "CLOUD_VALIDATION_RU.md", "VALIDATION_RU.md", "RESEARCH_RU.md",
         "P2P_RESEARCH_RU.md", "P2P_IMPLEMENTATION_PLAN_RU.md",
         "home_assistant/README_RU.md", "home_assistant/README_EN.md", "home_assistant/CONTRACT.md",

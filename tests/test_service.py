@@ -456,6 +456,16 @@ class PackageTests(unittest.TestCase):
                 self.assertTrue(resolved.is_file(), relative + " -> " + target)
                 self.assertIn(resolved.relative_to(root).as_posix(), names)
 
+    def test_primary_readmes_do_not_document_legacy_adb_setup(self):
+        root = Path(__file__).resolve().parents[1]
+        for name in ("README.md", "README_EN.md"):
+            text = (root / name).read_text("utf-8")
+            self.assertIn("LEGACY_ADB_RU.md", text)
+            self.assertIn("AUTONOMOUS_", text)
+            self.assertIn("home_assistant/README_", text)
+            for legacy_command in ("baseus_capture.py", "setup_adb.py", "adb devices", "configure-ui"):
+                self.assertNotIn(legacy_command, text)
+
     def test_brand_images_and_stable_domain(self):
         root = Path(__file__).resolve().parents[1] / "custom_components/baseus_s1"
         manifest = json.loads((root / "manifest.json").read_text("utf-8"))
