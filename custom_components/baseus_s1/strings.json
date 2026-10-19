@@ -1,0 +1,49 @@
+{
+  "title": "Baseus Security",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect the Baseus companion",
+        "description": "Enter the companion URL including http:// or https:// and its LOCAL API key. Baseus cloud login is available after setup under Configure.",
+        "data": {"url": "Companion URL", "api_key": "Local API key"}
+      }
+    },
+    "error": {"cannot_connect": "Cannot connect to the companion. Check its URL and network access.", "invalid_auth": "The local API key was rejected."},
+    "abort": {"already_configured": "This companion is already configured."}
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Baseus configuration",
+        "menu_options": {"settings": "Snapshots and storage", "cloud_login": "Sign in to Baseus", "auth_status": "Cloud session status"}
+      },
+      "settings": {
+        "title": "Snapshots and storage",
+        "description": "One schedule for all cameras. Interval starts after a capture cycle finishes. Frequent wake-ups consume battery. Archive requires a mounted directory in the companion container.",
+        "data": {"interval_seconds": "Capture interval (seconds)", "history_limit": "History images per camera (10–20)", "skip_frames": "Skip initial frames for camera date/time", "archive_days": "External archive retention (days)"}
+      },
+      "cloud_login": {
+        "title": "Explicit Baseus login",
+        "description": "WARNING: a new login may sign out your phone/tablet. This is a one-time action, not automatic re-login. Password is used in memory only; just the resulting cloud session is saved. Use HTTPS or a trusted local network between HA and companion. Region is set by BASEUS_COUNTRY in Docker.",
+        "data": {"account": "Baseus email", "password": "Baseus password", "confirm_session_reset": "I understand a new login may sign out other devices"}
+      },
+      "login_success": {"title": "Login successful", "description": "Baseus accepted the login. The session is saved and capture scheduling has resumed. Account/password were not saved. Camera connectivity is checked separately during capture."},
+      "login_rejected": {"title": "Login rejected", "description": "Baseus rejected the login. Check account, password and Docker region. No automatic retry was made. Account/password were not saved."},
+      "login_error": {"title": "Could not complete login", "description": "Network, cloud or storage error. No automatic retry was made. Check companion logs; do not share credentials."},
+      "login_unknown": {"title": "Login result not confirmed", "description": "HA stopped waiting or lost connection. The server may still complete login. Check Cloud session status before trying again; no automatic repeat was made."},
+      "auth_valid": {"title": "Cloud session accepted", "description": "The session was accepted at the last cloud check/login; future expiry is still possible. Account/password are not stored. Last login progress/result is also available in the Cloud session sensor attributes."},
+      "auth_missing": {"title": "No saved session", "description": "No usable session was found for the configured region. Use Sign in to Baseus or import a working session. Account/password are not stored."},
+      "auth_rejected": {"title": "Cloud session rejected", "description": "A token is present but was rejected on the last check. Automatic re-login is disabled. Explicit login or a working imported session is required."},
+      "auth_unknown": {"title": "Session not yet verified", "description": "A saved session exists but has not been checked since this service start. Token presence alone does not prove successful login."},
+      "auth_running": {"title": "Cloud login in progress", "description": "The explicitly requested login is still running. Wait and check the Cloud session sensor. Do not submit another login."}
+    },
+    "error": {"cannot_connect": "Could not save settings to the companion.", "confirm_required": "Confirm the risk of signing out other devices before logging in.", "busy": "The companion is capturing or logging in. Wait and try again.", "login_start_failed": "Login start was not confirmed. Check connection, API key and companion version (0.2.0+). Check Cloud session status before repeating: the server may have accepted the request."},
+    "progress": {"cloud_login": "Waiting for the explicitly requested Baseus login. Credentials will not be submitted again."},
+    "abort": {"update_companion": "Update the companion container to version 0.2.0 or newer.", "cannot_connect": "Could not read the companion status."}
+  },
+  "entity": {
+    "camera": {"snapshot": {"name": "Last snapshot"}},
+    "sensor": {"battery": {"name": "Battery"}, "last_capture": {"name": "Last capture"}, "cloud_auth": {"name": "Cloud session", "state": {"missing": "No session", "unknown": "Not verified", "valid": "Accepted at last check", "rejected": "Rejected", "logging_in": "Logging in"}}},
+    "button": {"capture": {"name": "Capture all cameras"}}
+  }
+}

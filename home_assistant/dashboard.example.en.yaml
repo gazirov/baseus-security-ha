@@ -1,0 +1,25 @@
+# Replace entity IDs with the actual IDs from Settings → Devices & services.
+type: vertical-stack
+cards:
+  - type: picture-entity
+    entity: camera.backyard_last_snapshot
+    name: Backyard
+    camera_view: auto
+    show_state: false
+    tap_action:
+      action: more-info
+  - type: entities
+    title: Baseus camera
+    entities:
+      - entity: sensor.backyard_battery
+        name: Battery
+      - entity: sensor.backyard_last_capture
+        name: Last successful snapshot
+      - entity: button.backyard_capture_all_cameras
+        name: Capture now
+  - type: button
+    name: Snapshot history
+    icon: mdi:image-multiple
+    tap_action:
+      action: navigate
+      navigation_path: /media-browser/browser

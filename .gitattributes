@@ -1,0 +1,10 @@
+# Keep source and Docker/Linux configuration consistent across Windows/Linux.
+* text=auto eol=lf
+
+*.png binary
+*.gif binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+*.pdf binary

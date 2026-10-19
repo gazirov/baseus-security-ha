@@ -1,0 +1,31 @@
+{
+  "interval_seconds": 3600,
+  "attempts_per_cycle": 2,
+  "retry_delay_seconds": 20,
+  "output_directory": "captures",
+  "state_directory": "state",
+  "log_directory": "logs",
+  "camera": {
+    "sn": "",
+    "product_id": ""
+  },
+  "cloud": {
+    "country": "RU",
+    "wake_before_capture": false,
+    "login_base_url": "",
+    "xm_url": "",
+    "mqtt_ca_file": ""
+  },
+  "android": {
+    "adb": "adb",
+    "serial": "",
+    "ui_backend": "uiautomator2",
+    "expected_app_version": "1.11.0",
+    "command_timeout": 20,
+    "capture_timeout": 90,
+    "stream_wait_seconds": 10,
+    "image_directory": "/sdcard/Pictures/xm_baseusipc",
+    "open_live": [],
+    "capture_selector": {}
+  }
+}

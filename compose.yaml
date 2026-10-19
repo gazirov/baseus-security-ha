@@ -1,0 +1,29 @@
+services:
+  baseus:
+    build: .
+    restart: unless-stopped
+    # Bind to localhost by default. For HA on another host, bind a trusted LAN
+    # address and firewall this port, or use a TLS reverse proxy.
+    ports:
+      - "127.0.0.1:8099:8099"
+    volumes:
+      - baseus_data:/data
+      # Optional NAS archive: mount it on the Docker host first, then uncomment.
+      # - /mnt/nas/cameras:/archive
+    environment:
+      BASEUS_DATA: /data
+      BASEUS_COUNTRY: RU
+      BASEUS_LOG_LEVEL: INFO
+      # Enable only after /archive is mounted and writable by UID 10001.
+      # BASEUS_ARCHIVE: /archive/baseus_s1
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    stop_grace_period: 30s
+
+volumes:
+  baseus_data:

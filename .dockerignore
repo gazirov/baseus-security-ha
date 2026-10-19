@@ -1,0 +1,10 @@
+*
+!baseus_s1/
+!baseus_s1/*.py
+!baseus_autonomous.py
+!baseus_service.py
+!requirements-autonomous.txt
+!requirements-service.txt
+!Dockerfile
+**/__pycache__
+**/*.pyc

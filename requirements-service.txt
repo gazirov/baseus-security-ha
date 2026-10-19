@@ -1,0 +1,2 @@
+-r requirements-autonomous.txt
+aiohttp>=3.11,<4
